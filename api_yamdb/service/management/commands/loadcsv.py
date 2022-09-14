@@ -1,9 +1,9 @@
 import csv
 import os
 
-from django.core.management.base import BaseCommand
-from django.contrib.auth import get_user_model
 from django.conf import settings
+from django.contrib.auth import get_user_model
+from django.core.management.base import BaseCommand
 
 from reviews.models import Genre, Category, Title, Review, Comment
 
@@ -20,7 +20,7 @@ class Command(BaseCommand):
         with open(file_path, encoding='utf-8') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',', )
             result = [row for row in csv_reader]
-        return result
+        return result or None
 
     @staticmethod
     def _process_date(csv_data, foreign_keys=()):
