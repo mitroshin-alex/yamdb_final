@@ -60,10 +60,9 @@ jobs:
           key: ${{ secrets.DEPLOY_KEY }}
           passphrase: ${{ secrets.DEPLOY_KEY_PASS }}
           script: |
-            sudo docker-compose stop
-            sudo docker-compose rm web
-            touch .env
-            echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> .env
+            sudo docker compose stop
+            sudo docker compose rm web
+            echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" > .env
             echo ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }} >> .env
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
             echo DB_NAME=${{ secrets.DB_NAME }} >> .env
