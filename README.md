@@ -12,7 +12,7 @@
 - Djangorestframework 3.12.4
 - Djangorestframework-simplejwt 4.7.2
 - Docker
-- Google 
+- Google
 ### Пример заполнения .env
 Файл .env должен располагаться в директории infra
 ```
