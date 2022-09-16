@@ -1,5 +1,5 @@
 # Docker yamdb_final
-![example workflow](https://github.com/mitroshin-alex/yamdb_final/actions/workflows/main.yml/badge.svg)
+![example workflow](https://github.com/mitroshin-alex/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
 ### Описание
 Блог, где Вы можете оценить фильмы, музыку, 
 книги и многое другое. 
@@ -12,7 +12,49 @@
 - Djangorestframework 3.12.4
 - Djangorestframework-simplejwt 4.7.2
 - Docker
+- Docker compose
 - Google
+### Автоматическое тестирование и развертывание проекта на сервер
+ - Скопировать файл yamdb_workflow.yml из корня проекта в директорию .github/workflows/
+```shell
+cp yamdb_workflow.yml .github/workflows/yamdb_workflow.yml
+```
+ - Заполнить секреты в GitHub
+```Settings -> Secrets```\
+Пример заполнения:
+```
+ALLOWED_HOSTS = localhost;web
+SECRET_KEY = xxxxxxxxxxxxxxxx
+DB_ENGINE = django.db.backends.postgresql
+DB_NAME = postgres
+POSTGRES_USER = postgres
+POSTGRES_PASSWORD = 123aaaBBBccc!
+DB_HOST = db
+DB_PORT = 5432
+DEPLOY_HOST = 1.1.1.1
+DEPLOY_KEY = -----BEGIN OPENSSH PRIVATE KEY-----
+             dbvivvsfv98934ur09fnveuvBYU*(UGC^&U
+             -----END OPENSSH PRIVATE KEY-----
+DEPLOY_KEY_PASS = 123qwe
+DEPLOY_USER = user
+DOCKER_USERNAME = user
+DOCKER_PASSWORD = 1234qwer
+TELEGRAM_TO = 12345
+TELEGRAM_TOKEN = 1111111111:dfvbjev7VVGVJHB8384-95JH
+```
+ - На сервере: \
+Остановите службу nginx и отключить ее \
+```sudo systemctl stop nginx``` \
+```sudo systemctl disable nginx``` \
+Установите docker \
+```sudo apt install docker.io``` \
+Установите docker compose \
+[официальная документация](https://docs.docker.com/compose/install/) \
+Скопировать \
+```docker-compose.yaml``` в домашнюю директорию на сервер \
+```default.conf``` в каталог nginx домашней директории на сервере \
+ - Push commit проекта на GitHab
+### Ручное развертывание проекта на сервере
 ### Пример заполнения .env
 Файл .env должен располагаться в директории infra
 ```
@@ -40,19 +82,19 @@ cd infra
 ``` 
 - Запустить docker-compose:
 ```
-docker-compose -p api_yamdb up -d
+docker compose -p api_yamdb up -d
 ``` 
 - Применить миграции к базе данных:
 ```
-docker-compose -p api_yamdb exec web python manage.py migrate
+docker compose -p api_yamdb exec web python manage.py migrate
 ```
 - Создание суперпользователя:
 ```
-docker-compose -p api_yamdb exec web python manage.py createsuperuser
+docker compose -p api_yamdb exec web python manage.py createsuperuser
 ```
 - Сбор статики:
 ```
-docker-compose -p api_yamdb exec web python manage.py collectstatic --no-input 
+docker compose -p api_yamdb exec web python manage.py collectstatic --no-input 
 ```
 ### Загрузка тестовых данных в BD
 - В файле конфигурации проекта задать путь к папке с данными
@@ -62,7 +104,7 @@ DATA_DIR = os.path.join(BASE_DIR, 'static/data/')
 ```
 - В папке с файлом manage.py выполните команду:
 ```
-docker-compose -p api_yamdb exec web python manage.py loadcsv
+docker compose -p api_yamdb exec web python manage.py loadcsv
 ```
 ### Примеры запросов
 - POST /api/v1/auth/token/
