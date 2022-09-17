@@ -1,6 +1,6 @@
 # Docker yamdb_final
 ![workflow status](https://github.com/mitroshin-alex/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg) \
-[тестовый сайт](http://test-srv.lexx.ru/)
+[тестовый сайт](http://51.250.102.176/api/v1/)
 ### Описание
 Блог, где Вы можете оценить фильмы, музыку, 
 книги и многое другое. 
