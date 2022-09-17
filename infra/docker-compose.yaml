@@ -11,8 +11,6 @@ services:
     image: mitroshinalex/yamdb_final_web:latest
     restart: always
     volumes:
-      - static_value:/app/static/
-      - media_value:/app/media/
       - ./redoc.yaml:/app/media/redoc.yaml
       - ./data:/app/media/data
     depends_on:
