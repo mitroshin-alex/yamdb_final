@@ -1,5 +1,6 @@
 # Docker yamdb_final
-![example workflow](https://github.com/mitroshin-alex/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
+![workflow status](https://github.com/mitroshin-alex/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg) \
+[тестовый сайт](http://test-srv.lexx.ru/)
 ### Описание
 Блог, где Вы можете оценить фильмы, музыку, 
 книги и многое другое. 
@@ -23,14 +24,6 @@ cp yamdb_workflow.yml .github/workflows/yamdb_workflow.yml
 ```Settings -> Secrets```\
 Пример заполнения:
 ```
-ALLOWED_HOSTS = localhost;web
-SECRET_KEY = xxxxxxxxxxxxxxxx
-DB_ENGINE = django.db.backends.postgresql
-DB_NAME = postgres
-POSTGRES_USER = postgres
-POSTGRES_PASSWORD = 123aaaBBBccc!
-DB_HOST = db
-DB_PORT = 5432
 DEPLOY_HOST = 1.1.1.1
 DEPLOY_KEY = -----BEGIN OPENSSH PRIVATE KEY-----
              dbvivvsfv98934ur09fnveuvBYU*(UGC^&U
@@ -42,6 +35,7 @@ DOCKER_PASSWORD = 1234qwer
 TELEGRAM_TO = 12345
 TELEGRAM_TOKEN = 1111111111:dfvbjev7VVGVJHB8384-95JH
 ```
+Плюс настройки для .env представленные ниже
  - На сервере: \
 Остановите службу nginx и отключить ее \
 ```sudo systemctl stop nginx``` \
