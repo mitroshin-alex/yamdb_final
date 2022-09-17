@@ -61,7 +61,7 @@ jobs:
           passphrase: ${{ secrets.DEPLOY_KEY_PASS }}
           script: |
             sudo docker compose stop
-            sudo docker compose rm web
+            sudo docker compose rm web -f
             echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" > .env
             echo "ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }}" >> .env
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
@@ -73,6 +73,8 @@ jobs:
             sudo docker compose up -d
             sudo docker compose exec web python manage.py migrate --no-input
             sudo docker compose exec web python manage.py collectstatic --no-input
+            sudo docker compose exec web cp -Rn ./infra/data/ ./static/data/
+            sudo docker compose exec web cp -n ./infra/redoc.yaml ./static/redoc.yaml
 
   send_message:
     runs-on: ubuntu-latest
