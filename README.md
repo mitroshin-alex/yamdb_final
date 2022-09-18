@@ -1,5 +1,5 @@
 # Docker yamdb_final
-![workflow status](https://github.com/mitroshin-alex/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg) \
+![workflow status](https://github.com/mitroshin-alex/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
 ### Описание
 Блог, где Вы можете оценить фильмы, музыку, 
 книги и многое другое. 
